@@ -12,9 +12,8 @@
         android:icon="@drawable/ic_playlists"/>
 
     <item
-        android:id="@+id/settings"
-        android:title="Settings"
-        android:icon="@drawable/ic_settings"/>
-
+        android:id="@+id/favourites"
+        android:title="Favourites"
+        android:icon="@drawable/ic_favourites"/>
 
 </menu>
