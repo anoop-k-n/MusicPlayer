@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Music Player</string>
+    <string name="pixel">Pixelated Oblivion</string>
+    <string name="starboy">Starboy</string>
+    <string name="dark"> The Dark Side of The Moon</string>
+    <string name="ronin"> Ronin</string>
+    <string name="providence"> Providence</string>
+    <string name="fall">Fall</string>
 </resources>

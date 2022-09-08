@@ -26,16 +26,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Albums"
-        android:layout_margin="10dp"
+        android:paddingLeft="10dp"
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@id/white_space_fragment"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/albumRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/albums"
-        android:layout_margin="10dp"
+        tools:listitem="@layout/album_view"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal"/>
 
 
