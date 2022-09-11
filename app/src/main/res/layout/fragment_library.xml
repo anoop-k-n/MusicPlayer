@@ -17,8 +17,8 @@
         app:layout_constraintTop_toTopOf="parent"
          />
 
-    <!-- todo : idea is to have a cardview with the album art and album name below in a recyclerview
-                scrolling horizontally for a few cards. If the albums textview is clicked, it opens
+    <!-- todo : idea is to have a imageview with the album art and album name below in a recyclerview
+                scrolling. If the albums textview is clicked, it opens
                 a list of all available albums -->
 
     <com.google.android.material.textview.MaterialTextView
@@ -37,8 +37,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/albums"
         tools:listitem="@layout/album_view"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="horizontal"/>
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="4"/>
 
 
 
