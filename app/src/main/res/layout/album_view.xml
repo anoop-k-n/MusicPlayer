@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="100dp"
     android:layout_height="140dp"
-    android:layout_margin="5dp"
-    android:elevation="3dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="5dp">
-    <!--android:layout_margin="10dp"-->
+    >
+
+ <!--   <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:id="@+id/materialCardView"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="4dp"
+        android:clickable="true"
+        app:cardElevation="5dp">-->
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/albumImage"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:src="@color/very_light_blue"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
     </com.google.android.material.imageview.ShapeableImageView>
 
     <TextView
@@ -24,8 +29,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:textAlignment="center"
+        android:lines="2"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/albumImage" />
+         />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

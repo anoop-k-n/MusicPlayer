@@ -8,33 +8,38 @@
     tools:context=".MainActivity">
 
 
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/actualAppBar"
+        app:liftOnScroll="false">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mainAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Music Player"
+            android:background="@color/purple_500"
+            app:titleTextColor="@color/white"
+            android:elevation="0dp"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:menu="@menu/main_menu"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/actualAppBar"
         app:layout_constraintBottom_toBottomOf="parent"
         >
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:liftOnScroll="true">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/mainAppBar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:title="Music Player"
-                android:background="@color/purple_500"
-                app:titleTextColor="@color/white"
-                android:elevation="0dp"
-                app:layout_scrollFlags="scroll|enterAlways|snap"
-                app:menu="@menu/main_menu"
-                />
-
-        </com.google.android.material.appbar.AppBarLayout>
 
         <FrameLayout
             android:id="@+id/frameLayout"

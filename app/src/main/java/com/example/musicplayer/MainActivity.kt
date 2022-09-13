@@ -23,8 +23,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         replaceFragment(LibraryFragment())
 
-
-
         binding.bottomNavigationView.setOnItemSelectedListener {
 
             when (it.itemId) {

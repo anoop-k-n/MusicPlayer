@@ -6,9 +6,11 @@
         <entry key="app/src/main/res/drawable-anydpi/ic_playlists.xml" value="0.244" />
         <entry key="app/src/main/res/drawable-anydpi/ic_settings.xml" value="0.244" />
         <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.2525" />
+        <entry key="app/src/main/res/layout/activity_complete_album_details.xml" value="0.296195652173913" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/activity_player.xml" value="0.296195652173913" />
         <entry key="app/src/main/res/layout/album_view.xml" value="0.35208333333333336" />
+        <entry key="app/src/main/res/layout/complete_album_details.xml" value="0.29736842105263156" />
         <entry key="app/src/main/res/layout/fragment_favourites.xml" value="0.296195652173913" />
         <entry key="app/src/main/res/layout/fragment_library.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/fragment_playlists.xml" value="0.296195652173913" />
