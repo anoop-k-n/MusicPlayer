@@ -1,6 +1,7 @@
 package com.example.musicplayer
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -33,9 +34,11 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
 
         adapter.setOnItemClickListener(object : AlbumAdapter.onItemClickListener{
             override fun onItemCLick(position: Int) {
-                //val intent = Intent(context,::class.java)
-               // intent.putExtra("key", MusicListLibrary[position].album)
-                //startActivity(intent)
+                val intent = Intent(context,PlayerActivity::class.java)
+                intent.putExtra("album", MusicListLibrary[position].album)
+                intent.putExtra("class","AlbumAdapter")
+
+                startActivity(intent)
 
             }
 
