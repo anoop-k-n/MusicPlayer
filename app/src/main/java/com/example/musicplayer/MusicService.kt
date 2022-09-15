@@ -1,5 +1,6 @@
 package com.example.musicplayer
 
+import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -25,6 +26,16 @@ class MusicService: Service() {
     }
 
     fun showNotification(){
+
+        val prevIntent = Intent(baseContext,NotificationReceiver::class.java).setAction(ApplicationClass.PREVIOUS)
+        val prevPendingIntent = PendingIntent.getBroadcast(baseContext,0,prevIntent,PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val playIntent = Intent(baseContext,NotificationReceiver::class.java).setAction(ApplicationClass.PLAY)
+        val playPendingIntent = PendingIntent.getBroadcast(baseContext,0,playIntent,PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val nextIntent = Intent(baseContext,NotificationReceiver::class.java).setAction(ApplicationClass.NEXT)
+        val nextPendingIntent = PendingIntent.getBroadcast(baseContext,0,nextIntent,PendingIntent.FLAG_UPDATE_CURRENT)
+
         val notification = NotificationCompat.Builder(baseContext,ApplicationClass.CHANNEL_ID)
             .setContentTitle(PlayerActivity.musicListPA[PlayerActivity.songPosition].title)
             .setContentTitle(PlayerActivity.musicListPA[PlayerActivity.songPosition].artist)
@@ -34,11 +45,11 @@ class MusicService: Service() {
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setOnlyAlertOnce(true)
-            .addAction(R.drawable.previous_song_icon, "Previous",null)
-            .addAction(R.drawable.play_icon, "Play",null)
-            .addAction(R.drawable.next_song_icon, "Next",null)
+            .addAction(R.drawable.previous_song_icon, "Previous",prevPendingIntent)
+            .addAction(R.drawable.play_icon, "Play",playPendingIntent)
+            .addAction(R.drawable.next_song_icon, "Next",nextPendingIntent)
             .build()
 
-       // startForeground(10,notification)
+        startForeground(10,notification)
     }
 }
