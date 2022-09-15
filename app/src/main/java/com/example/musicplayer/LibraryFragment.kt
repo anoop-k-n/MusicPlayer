@@ -1,23 +1,20 @@
 package com.example.musicplayer
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.io.File
 
-var checkDuplicates = ArrayList<String>()
+//var checkDuplicates = ArrayList<String>()
 
 class LibraryFragment : Fragment(R.layout.fragment_library) {
     private lateinit var adapter: AlbumAdapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var albumArrayList: ArrayList<album>
 
 
     companion object {
@@ -27,7 +24,7 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dataInitialize()
-        val layoutManager = GridLayoutManager(context, 3)
+        val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.albumRecyclerView)
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
@@ -36,9 +33,10 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
 
         adapter.setOnItemClickListener(object : AlbumAdapter.onItemClickListener{
             override fun onItemCLick(position: Int) {
-                val intent = Intent(context,CompleteAlbumDetails::class.java)
-                intent.putExtra("key", MusicListLibrary[position].album)
-                startActivity(intent)
+                //val intent = Intent(context,::class.java)
+               // intent.putExtra("key", MusicListLibrary[position].album)
+                //startActivity(intent)
+
             }
 
         })
@@ -104,20 +102,19 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
                     val file = File(music.path)
 
                     // adding albums to list so that duplicates can be filtered out and only unique ones can be shown
-                    val TAG = "Check Duplicates"
+                    //val TAG = "Check Duplicates"
 
-                    if (music.album !in checkDuplicates) {
-                        Log.i(TAG, "${music.album} not in checkDuplicates")
-                        checkDuplicates.add(music.album)
+                    //if (music.album !in checkDuplicates) {
+                        //Log.i(TAG, "${music.album} not in checkDuplicates")
+                        //checkDuplicates.add(music.album)
                         if (file.exists()) {
                             tempList.add(music)
-                            val albumtext: String = music.album
                         }
-                    }
+                    //}
                 } while (cursor.moveToNext())
             cursor.close()
         }
-        checkDuplicates.clear()
+        //checkDuplicates.clear()
         return tempList
     }
 }

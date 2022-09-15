@@ -1,7 +1,6 @@
 package com.example.musicplayer
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,8 +23,9 @@ class AlbumAdapter(private val context: Context, private val musicList : ArrayLi
     }
 
     class AlbumViewHolder(itemView : View,listener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
-        val image : ShapeableImageView = itemView.findViewById(R.id.albumImage)
-        val album : TextView = itemView.findViewById(R.id.album)
+        val image : ShapeableImageView = itemView.findViewById(R.id.albumInLibraryImage)
+        val album : TextView = itemView.findViewById(R.id.albumInLibrary)
+        val songTitle : TextView = itemView.findViewById(R.id.songTitleInLibrary)
 
         init{
                 itemView.setOnClickListener {
@@ -39,19 +39,18 @@ class AlbumAdapter(private val context: Context, private val musicList : ArrayLi
         parent: ViewGroup,
         viewType: Int
     ): AlbumAdapter.AlbumViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.album_view,parent,false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.library_fragment_view,parent,false)
 
         return AlbumViewHolder(itemView,mListener)
             }
 
     override fun onBindViewHolder(holder: AlbumAdapter.AlbumViewHolder, position: Int) {
         holder.album.text = musicList[position].album
-        val tag = "Album Names"
-        Log.i(tag,"${holder.album.text} is present")
         Glide.with(context)
             .load(musicList[position].artUri)
                 .apply(RequestOptions().placeholder(R.drawable.music_player_icon_splash_screen).centerCrop())
                 .into(holder.image)
+        holder.songTitle.text = musicList[position].title
 
 
     }

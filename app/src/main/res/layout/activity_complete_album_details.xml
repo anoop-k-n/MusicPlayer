@@ -33,9 +33,12 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/songRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        tools:listitem="@layout/individual_songs"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/AlbumName"
         android:layout_marginHorizontal="5dp"/>
 

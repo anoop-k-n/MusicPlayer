@@ -5,6 +5,9 @@
       <map>
         <entry key="app/src/main/res/drawable-anydpi/ic_playlists.xml" value="0.244" />
         <entry key="app/src/main/res/drawable-anydpi/ic_settings.xml" value="0.244" />
+        <entry key="app/src/main/res/drawable/back_icon.xml" value="0.313" />
+        <entry key="app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.313" />
+        <entry key="app/src/main/res/drawable/pause_song_icon.xml" value="0.313" />
         <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.2525" />
         <entry key="app/src/main/res/layout/activity_complete_album_details.xml" value="0.296195652173913" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.353125" />
@@ -15,6 +18,9 @@
         <entry key="app/src/main/res/layout/fragment_library.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/fragment_playlists.xml" value="0.296195652173913" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.296195652173913" />
+        <entry key="app/src/main/res/layout/individual_songs.xml" value="0.296195652173913" />
+        <entry key="app/src/main/res/layout/library_fragment_view.xml" value="0.296195652173913" />
+        <entry key="app/src/main/res/layout/player.xml" value="0.296195652173913" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.2725806451612903" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.353125" />
       </map>
