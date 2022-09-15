@@ -35,6 +35,7 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
         adapter.setOnItemClickListener(object : AlbumAdapter.onItemClickListener{
             override fun onItemCLick(position: Int) {
                 val intent = Intent(context,PlayerActivity::class.java)
+                intent.putExtra("index",position)
                 intent.putExtra("album", MusicListLibrary[position].album)
                 intent.putExtra("class","AlbumAdapter")
 

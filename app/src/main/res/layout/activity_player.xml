@@ -70,30 +70,29 @@
         android:gravity="center"
        >
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/previousBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabCustomSize="55dp"
-            android:src="@drawable/previous_song_icon"
-            android:scaleType="center"
+            app:icon="@drawable/previous_song_icon"
             android:backgroundTint="@color/teal_700"
             android:layout_marginEnd="30dp"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/playPauseBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pause_song_icon"
+            app:icon="@drawable/pause_song_icon"
             android:backgroundTint="@color/cool_blue"
-            app:fabCustomSize="55dp"
             />
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/nextBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/next_song_icon"
+            app:icon="@drawable/next_song_icon"
             android:backgroundTint="@color/teal_700"
-            app:fabCustomSize="55dp"
             android:layout_marginStart="30dp"
             />
 
