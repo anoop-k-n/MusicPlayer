@@ -18,28 +18,30 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestRuntimePermission()
+        //requestRuntimePermission()     change the asking of permission after the basic toolbar and
+        //                               bottom navigation view is loaded but before songs are
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(LibraryFragment())
 
+        // Bottom Navigation View
         binding.bottomNavigationView.setOnItemSelectedListener {
-
             when (it.itemId) {
                 R.id.library -> replaceFragment(LibraryFragment())
                 R.id.playlists -> replaceFragment(PlaylistsFragment())
                 R.id.favourites -> replaceFragment(FavouritesFragment())
-
-                else -> {
-
-                }
+                else -> { }
             }
             true
         }
-
+        if(requestRuntimePermission()) {
+            initializeLayout()
+        }
 
     }
 
+    private fun initializeLayout(){
+            replaceFragment(LibraryFragment())
+    }
     // To replace the fragment when the bottomnavigationview is clicked
     private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
@@ -74,19 +76,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Request for storage permisssion
-    private fun requestRuntimePermission() {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                1
-            )
+    private fun requestRuntimePermission(): Boolean {
+        if (ActivityCompat.checkSelfPermission(this,android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),1)
+            return false
         }
+        return true
     }
 
     override fun onRequestPermissionsResult(
@@ -96,9 +92,10 @@ class MainActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 1) {
-          //  if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) super.onRequestPermissionsResult(
-            //    requestCode,permissions,grantResults)
-            //Snackbar.make(findViewById(R.id.mainAppBar),"Permission Granted",Snackbar.LENGTH_SHORT).show()
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                initializeLayout()
         }
+        else
+            ActivityCompat.requestPermissions(this,arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),1)
     }
 }
