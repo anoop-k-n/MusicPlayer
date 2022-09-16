@@ -121,4 +121,6 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
         //checkDuplicates.clear()
         return tempList
     }
+
+
 }

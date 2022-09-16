@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.musicplayer.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
+import kotlin.system.exitProcess
 
 
 class MainActivity : AppCompatActivity() {
@@ -97,5 +98,16 @@ class MainActivity : AppCompatActivity() {
         }
         else
             ActivityCompat.requestPermissions(this,arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),1)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if(PlayerActivity.musicService != null){
+            // user wants to close the app
+            PlayerActivity.musicService!!.stopForeground(1)
+            PlayerActivity.musicService!!.mediaPlayer!!.release()
+            PlayerActivity.musicService = null
+            exitProcess(1)
+        }
     }
 }
