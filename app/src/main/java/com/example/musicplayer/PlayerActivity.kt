@@ -7,6 +7,7 @@ import android.content.ServiceConnection
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.IBinder
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -47,6 +48,18 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection {
         binding.nextBtn.setOnClickListener{
             changeSong(increment = true)
         }
+
+        binding.seekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) = Unit
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                TODO("Not yet implemented")
+            }
+        })
     }
 
 
@@ -68,6 +81,8 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection {
             musicService!!.mediaPlayer!!.start()
             isPlaying = true
             binding.playPauseBtn.setIconResource(R.drawable.pause_song_icon)
+            // change notification every time a mediaplayer object is created
+            musicService!!.showNotification(R.drawable.pause_song_icon)
         }catch(e: Exception){return}
     }
 
@@ -105,26 +120,10 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection {
     }
 
 
-    private fun setSongPosition(increment: Boolean){
-        if(increment){
-            // max boundary condition, start looping around if that is the case
-            if(musicListPA.size - 1 == songPosition)
-                songPosition = 0
-            else ++songPosition
-        }
-        // min boundary condition, start looping from backward if so
-        else{
-            if(songPosition == 0)
-                songPosition = musicListPA.size - 1
-            else --songPosition
-        }
-    }
-
     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
         val binder = service as MusicService.MyBinder
         musicService = binder.currentService()
         createMediaPlayer()
-        musicService!!.showNotification(R.drawable.pause_song_icon)
     }
 
     override fun onServiceDisconnected(name: ComponentName?) {

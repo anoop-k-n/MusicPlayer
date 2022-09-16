@@ -36,11 +36,18 @@ class MusicService: Service() {
         val nextIntent = Intent(baseContext,NotificationReceiver::class.java).setAction(ApplicationClass.NEXT)
         val nextPendingIntent = PendingIntent.getBroadcast(baseContext,0,nextIntent,PendingIntent.FLAG_IMMUTABLE)
 
+        // retreive the bitmap art for notification
+        val imgArt = getImageArtForNotification(PlayerActivity.musicListPA[PlayerActivity.songPosition].path)
+        val image = if(imgArt != null){
+                BitmapFactory.decodeByteArray(imgArt,0,imgArt.size)
+            }else{
+                BitmapFactory.decodeResource(resources,R.drawable.music_player_icon_splash_screen)
+            }
+
         val notification = NotificationCompat.Builder(baseContext,ApplicationClass.CHANNEL_ID)
             .setContentTitle(PlayerActivity.musicListPA[PlayerActivity.songPosition].title)
-            .setContentTitle(PlayerActivity.musicListPA[PlayerActivity.songPosition].artist)
             .setSmallIcon(R.drawable.ic_playlists)
-            .setLargeIcon(BitmapFactory.decodeResource(resources,R.drawable.music_player_icon_splash_screen))
+            .setLargeIcon(image)
             .setStyle(androidx.media.app.NotificationCompat.MediaStyle().setMediaSession(mediaSession.sessionToken))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
@@ -51,5 +58,18 @@ class MusicService: Service() {
             .build()
 
         startForeground(10,notification)
+    }
+
+
+    fun createMediaPlayer(){
+        try {
+            if(PlayerActivity.musicService!!.mediaPlayer == null) PlayerActivity.musicService!!.mediaPlayer = MediaPlayer()
+            PlayerActivity.musicService!!.mediaPlayer!!.reset()
+            PlayerActivity.musicService!!.mediaPlayer!!.setDataSource(PlayerActivity.musicListPA[PlayerActivity.songPosition].path)
+            PlayerActivity.musicService!!.mediaPlayer!!.prepare()
+            PlayerActivity.binding.playPauseBtn.setIconResource(R.drawable.pause_song_icon)
+            // change notification every time a mediaplayer object is created
+            PlayerActivity.musicService!!.showNotification(R.drawable.pause_song_icon)
+        }catch(e: Exception){return}
     }
 }
