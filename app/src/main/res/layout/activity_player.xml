@@ -18,8 +18,9 @@
         >
 
         <ImageButton
+            android:id="@+id/backBtn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:src="@drawable/back_icon"
             android:background="@android:color/transparent"
             app:tint="@android:color/black"
@@ -133,7 +134,7 @@
 
         <TextView
             android:id="@+id/timeTotal"
-            android:text="Loading"
+            android:text="Total Time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"

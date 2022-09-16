@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.musicplayer.databinding.ActivityPlayerBinding
 
-class PlayerActivity : AppCompatActivity(), ServiceConnection {
+class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCompletionListener {
 
     companion object{
         lateinit var musicListPA: ArrayList<Music>
@@ -86,6 +86,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection {
             binding.timeTotal.text = formatDuration(musicService!!.mediaPlayer!!.duration.toLong())
             binding.seekBar.progress = 0
             binding.seekBar.max = musicService!!.mediaPlayer!!.duration
+            musicService!!.mediaPlayer!!.setOnCompletionListener(this)
         }catch(e: Exception){return}
     }
 
@@ -131,5 +132,14 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection {
 
     override fun onServiceDisconnected(name: ComponentName?) {
         musicService = null
+    }
+
+    override fun onCompletion(mp: MediaPlayer?) {
+        setSongPosition(increment = true)
+        createMediaPlayer()
+        try{
+            setLayout()
+        }catch (e: Exception) {return}
+
     }
 }
