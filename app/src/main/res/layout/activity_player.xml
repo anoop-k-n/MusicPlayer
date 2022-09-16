@@ -119,7 +119,7 @@
         android:layout_marginHorizontal="10dp">
 
         <TextView
-            android:id="@+id/timeZero"
+            android:id="@+id/progressTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"

@@ -51,14 +51,12 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection {
 
         binding.seekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                TODO("Not yet implemented")
+                if(fromUser) musicService!!.mediaPlayer!!.seekTo(progress)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) = Unit
 
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                TODO("Not yet implemented")
-            }
+            override fun onStopTrackingTouch(seekBar: SeekBar?) = Unit
         })
     }
 
@@ -83,6 +81,11 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection {
             binding.playPauseBtn.setIconResource(R.drawable.pause_song_icon)
             // change notification every time a mediaplayer object is created
             musicService!!.showNotification(R.drawable.pause_song_icon)
+
+            binding.progressTime.text = formatDuration(musicService!!.mediaPlayer!!.currentPosition.toLong())
+            binding.timeTotal.text = formatDuration(musicService!!.mediaPlayer!!.duration.toLong())
+            binding.seekBar.progress = 0
+            binding.seekBar.max = musicService!!.mediaPlayer!!.duration
         }catch(e: Exception){return}
     }
 

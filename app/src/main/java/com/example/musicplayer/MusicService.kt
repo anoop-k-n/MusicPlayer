@@ -70,6 +70,13 @@ class MusicService: Service() {
             PlayerActivity.binding.playPauseBtn.setIconResource(R.drawable.pause_song_icon)
             // change notification every time a mediaplayer object is created
             PlayerActivity.musicService!!.showNotification(R.drawable.pause_song_icon)
+
+
+
+            PlayerActivity.binding.progressTime.text = formatDuration(PlayerActivity.musicService!!.mediaPlayer!!.currentPosition.toLong())
+            PlayerActivity.binding.timeTotal.text = formatDuration(PlayerActivity.musicService!!.mediaPlayer!!.duration.toLong())
+            PlayerActivity.binding.seekBar.progress = 0
+            PlayerActivity.binding.seekBar.max = PlayerActivity.musicService!!.mediaPlayer!!.duration
         }catch(e: Exception){return}
     }
 }
