@@ -115,7 +115,6 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection {
         isPlaying = false
         musicService!!.mediaPlayer!!.pause()
     }
-
     private fun changeSong(increment:Boolean){
         setSongPosition(increment)
         setLayout()
@@ -127,6 +126,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection {
         val binder = service as MusicService.MyBinder
         musicService = binder.currentService()
         createMediaPlayer()
+        musicService!!.seekBarSetter()
     }
 
     override fun onServiceDisconnected(name: ComponentName?) {

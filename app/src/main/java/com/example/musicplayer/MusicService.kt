@@ -6,13 +6,16 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.media.MediaPlayer
 import android.os.Binder
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import android.support.v4.media.session.MediaSessionCompat
 import androidx.core.app.NotificationCompat
 
 class MusicService: Service() {
     private var myBinder = MyBinder()
     var mediaPlayer: MediaPlayer? = null
+    private lateinit var runnable: Runnable
     private lateinit var mediaSession: MediaSessionCompat
 
     override fun onBind(p0: Intent?): IBinder {
@@ -71,12 +74,19 @@ class MusicService: Service() {
             // change notification every time a mediaplayer object is created
             PlayerActivity.musicService!!.showNotification(R.drawable.pause_song_icon)
 
-
-
-            PlayerActivity.binding.progressTime.text = formatDuration(PlayerActivity.musicService!!.mediaPlayer!!.currentPosition.toLong())
-            PlayerActivity.binding.timeTotal.text = formatDuration(PlayerActivity.musicService!!.mediaPlayer!!.duration.toLong())
+            PlayerActivity.binding.progressTime.text = formatDuration(mediaPlayer!!.currentPosition.toLong())
+            PlayerActivity.binding.timeTotal.text = formatDuration(mediaPlayer!!.duration.toLong())
             PlayerActivity.binding.seekBar.progress = 0
-            PlayerActivity.binding.seekBar.max = PlayerActivity.musicService!!.mediaPlayer!!.duration
+            PlayerActivity.binding.seekBar.max = mediaPlayer!!.duration
         }catch(e: Exception){return}
+    }
+
+    fun seekBarSetter(){
+        runnable = Runnable {
+            PlayerActivity.binding.progressTime.text = formatDuration(mediaPlayer!!.currentPosition.toLong())
+            PlayerActivity.binding.seekBar.progress = mediaPlayer!!.currentPosition
+            Handler(Looper.getMainLooper()).postDelayed(runnable,200)
+        }
+        Handler(Looper.getMainLooper()).postDelayed(runnable,0)
     }
 }
