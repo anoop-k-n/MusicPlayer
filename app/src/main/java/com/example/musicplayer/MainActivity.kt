@@ -1,14 +1,13 @@
 package com.example.musicplayer
 
+import android.app.Service
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.musicplayer.databinding.ActivityMainBinding
-import com.google.android.material.snackbar.Snackbar
 import kotlin.system.exitProcess
 
 
@@ -54,11 +53,26 @@ class MainActivity : AppCompatActivity() {
     // Inflate the main menu(toolbar)
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
-        return true
+        //val searchView = menu.findItem(R.id.app_bar_search)?.actionView as SearchView
+        /*searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean = true
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if(newText!=null){
+                    val userInput = newText.lowercase()
+                    val tag2 = "Searching song"
+                    Log.i(tag2, "Searching for $userInput")
+                    Toast.makeText(this@MainActivity,userInput,Toast.LENGTH_SHORT).show()
+                    //TODO check once below..same search button click is there, not sure
+                }
+                return true
+            }
+        })*/
+        return onCreateOptionsMenu(menu)
     }
 
     // Action to be taken when clicked on
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+     /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.app_bar_search -> Snackbar.make(
                 findViewById(R.id.app_bar_search),
@@ -74,7 +88,7 @@ class MainActivity : AppCompatActivity() {
             //TODO R.id.settings -> go to settings
         }
         return true
-    }
+    }*/
 
     // Request for storage permisssion
     private fun requestRuntimePermission(): Boolean {
@@ -104,10 +118,11 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         if(PlayerActivity.musicService != null){
             // user wants to close the app
-            PlayerActivity.musicService!!.stopForeground(1)
+            PlayerActivity.musicService!!.stopForeground(Service.STOP_FOREGROUND_REMOVE)
             PlayerActivity.musicService!!.mediaPlayer!!.release()
             PlayerActivity.musicService = null
             exitProcess(1)
         }
     }
+
 }

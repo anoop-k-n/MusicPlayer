@@ -20,6 +20,7 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
 
     companion object {
         lateinit var MusicListLibrary: ArrayList<Music>
+        lateinit var MusicListSearch: ArrayList<Music>
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-anydpi/ic_playlists.xml" value="0.244" />
+        <entry key="app/src/main/res/drawable-anydpi/ic_search.xml" value="0.313" />
         <entry key="app/src/main/res/drawable-anydpi/ic_settings.xml" value="0.244" />
         <entry key="app/src/main/res/drawable/back_icon.xml" value="0.313" />
         <entry key="app/src/main/res/drawable/favorite_empty_icon.xml" value="0.313" />
