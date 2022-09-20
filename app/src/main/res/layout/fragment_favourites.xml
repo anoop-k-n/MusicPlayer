@@ -6,13 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <com.google.android.material.textview.MaterialTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Favourites Fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/white_space_fragment_in_fav"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/favoritesText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Favorites"
+        android:paddingBottom="4dp"
+        android:paddingStart="5dp"
+        android:layout_marginTop="5dp"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/white_space_fragment_in_fav"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/favoritesText"
+        android:id="@+id/FavoriteRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/favorite_view"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

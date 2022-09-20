@@ -55,20 +55,19 @@ class AlbumAdapter(private val context: Context, private val musicList : ArrayLi
                 .apply(RequestOptions().placeholder(R.drawable.music_player_icon_splash_screen).centerCrop())
                 .into(holder.image)
         holder.songTitle.text = musicList[position].title
-        holder.itemView.setOnClickListener{
-            when{
+        /*holder.itemView.setOnClickListener{
                 // if same song is clicked
-                musicList[position].id == PlayerActivity.nowPlayingID ->
-                    sendIntent("NowPlaying",PlayerActivity.songPosition)
-            }
+                if(musicList[position].id == PlayerActivity.nowPlayingID)
+                    sendIntent(ref = "NowPlaying", pos = PlayerActivity.songPosition)
+                else sendIntent(ref="AlbumAdapter",pos = position)
+            }*/
         }
-    }
 
     override fun getItemCount(): Int {
         return musicList.size
     }
 
-    private fun sendIntent(ref: String,pos: Int){
+     fun sendIntent(ref: String,pos: Int){
         val intent = Intent(context,PlayerActivity::class.java)
         intent.putExtra("index",pos)
         intent.putExtra("ref",ref)
@@ -76,4 +75,9 @@ class AlbumAdapter(private val context: Context, private val musicList : ArrayLi
     }
 
 }
+
+
+
+
+
 
