@@ -34,3 +34,15 @@ fun setSongPosition(increment: Boolean){
         else --PlayerActivity.songPosition
     }
 }
+
+
+fun favoriteChecker(id: String): Int{
+    PlayerActivity.isFavorite = false
+    FavouritesFragment.favoriteSongs.forEachIndexed{index, music ->
+        if(id == music.id){
+            PlayerActivity.isFavorite = true
+            return index
+        }
+    }
+    return -1
+}

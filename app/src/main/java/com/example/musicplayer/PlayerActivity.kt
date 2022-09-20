@@ -23,6 +23,8 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         @SuppressLint("StaticFieldLeak")
         lateinit var binding: ActivityPlayerBinding
         var nowPlayingID: String = ""
+        var isFavorite: Boolean = false
+        var favIndex: Int = -1
     }
 
 
@@ -57,10 +59,26 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) = Unit
         })
+
+        binding.favoriteBtnInPlayer.setOnClickListener {
+            if(isFavorite){
+                binding.favoriteBtnInPlayer.setImageResource(R.drawable.favorite_empty_icon)
+                isFavorite = false
+                FavouritesFragment.favoriteSongs.removeAt(favIndex)
+            }
+            else{
+                binding.favoriteBtnInPlayer.setImageResource(R.drawable.ic_favourites)
+                isFavorite = true
+                FavouritesFragment.favoriteSongs.add(musicListPA[songPosition])
+            }
+        }
     }
 
 
     private fun setLayout(){
+        favIndex = favoriteChecker(musicListPA[songPosition].id)
+        if(isFavorite) binding.favoriteBtnInPlayer.setImageResource(R.drawable.ic_favourites)
+        else binding.favoriteBtnInPlayer.setImageResource(R.drawable.favorite_empty_icon)
         Glide.with(this)
             .load(musicListPA[songPosition].artUri)
             .apply(RequestOptions().placeholder(R.drawable.music_player_icon_splash_screen).centerCrop())

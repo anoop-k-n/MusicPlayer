@@ -19,9 +19,9 @@
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:text="SongName"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
+        app:maxLines="2"
+        android:text="Song Name"
+        android:gravity="center"
         />
         
 

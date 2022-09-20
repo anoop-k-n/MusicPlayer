@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.musicplayer.databinding.FavoriteViewBinding
 
-class FavoriteAdapter(private val context: Context, private val musicList : ArrayList<String>) : RecyclerView.Adapter<FavoriteAdapter.MyHolder>() {
+class FavoriteAdapter(private val context: Context, private val musicList : ArrayList<Music>) : RecyclerView.Adapter<FavoriteAdapter.MyHolder>() {
 
     class MyHolder(binding: FavoriteViewBinding) : RecyclerView.ViewHolder(binding.root) {
         val image = binding.SongImgInFavorites
@@ -23,7 +25,11 @@ class FavoriteAdapter(private val context: Context, private val musicList : Arra
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
-        holder.name.text = musicList[position]
+        holder.name.text = musicList[position].title
+        Glide.with(context)
+            .load(musicList[position].artUri)
+            .apply(RequestOptions().placeholder(R.drawable.music_player_icon_splash_screen).centerCrop())
+            .into(holder.image)
     }
 
     override fun getItemCount(): Int {
