@@ -5,6 +5,8 @@
     android:layout_marginHorizontal="2dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
+    app:strokeColor="@color/purple_700"
+    app:strokeWidth="1dp"
     android:layout_marginVertical="2dp">
 
 
@@ -36,9 +38,14 @@
             app:layout_constraintTop_toTopOf="parent" />
         
         <ImageButton
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src
+            android:id="@+id/DeletePlaylistBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/delete_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/purple_500"
+            android:backgroundTint="@android:color/transparent"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

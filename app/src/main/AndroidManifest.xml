@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.musicplayer">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:name=".ApplicationClass"
@@ -13,14 +14,20 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/music_player_icon"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/music_player_icon_round"
         android:supportsRtl="true"
-        android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-        tools:targetApi="31">
-        <!--<activity
+        >
+        <activity
+            android:name=".PlayListDetails"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <!--
+        <activity
             android:name=".CompleteAlbumDetails"
-            android:exported="false" /> -->
+            android:exported="false" />
+        -->
         <activity
             android:name=".PlayerActivity"
             android:exported="false"
@@ -35,9 +42,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".MusicService"/>
-        <receiver android:name=".NotificationReceiver"
-            android:enabled="true"/>
+
+        <service android:name=".MusicService" />
+
+        <receiver
+            android:name=".NotificationReceiver"
+            android:enabled="true" />
     </application>
 
 </manifest>
