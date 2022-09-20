@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.musicplayer.databinding.FavoriteViewBinding
 
-class FavoriteAdapter(private val context: Context, private val musicList : ArrayList<Music>) : RecyclerView.Adapter<FavoriteAdapter.MyHolder>() {
+class FavoriteAdapter(private val context: Context, private var musicList : ArrayList<Music>) : RecyclerView.Adapter<FavoriteAdapter.MyHolder>() {
 
     private lateinit var mListener: FavoriteAdapter.onItemClickListener
 

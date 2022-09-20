@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="2dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="10dp"
+    android:layout_marginVertical="2dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,6 +23,7 @@
             />
 
         <TextView
+            android:id="@+id/PlaylistName"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:gravity="center"
@@ -32,6 +34,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        
+        <ImageButton
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
