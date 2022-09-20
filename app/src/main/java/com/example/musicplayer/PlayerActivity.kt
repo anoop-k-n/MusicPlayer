@@ -22,6 +22,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         var musicService: MusicService? = null
         @SuppressLint("StaticFieldLeak")
         lateinit var binding: ActivityPlayerBinding
+        var nowPlayingID: String = ""
     }
 
 
@@ -30,11 +31,6 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         super.onCreate(savedInstanceState)
         binding = ActivityPlayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // start the service
-        val intent = Intent(this,MusicService::class.java)
-        bindService(intent,this, BIND_AUTO_CREATE)
-        startService(intent)
 
         initializeLayout()
 
@@ -90,6 +86,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             binding.seekBar.progress = 0
             binding.seekBar.max = musicService!!.mediaPlayer!!.duration
             musicService!!.mediaPlayer!!.setOnCompletionListener(this)
+            nowPlayingID = musicListPA[songPosition].id
         }catch(e: Exception){return}
     }
 
@@ -97,7 +94,22 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
     private fun initializeLayout(){
         songPosition = intent.getIntExtra("index",0)
         when(intent.getStringExtra("class")){
+            "NowPlaying" ->{
+                setLayout()
+                binding.progressTime.text = formatDuration(musicService!!.mediaPlayer!!.currentPosition.toLong())
+                binding.timeTotal.text = formatDuration(musicService!!.mediaPlayer!!.duration.toLong())
+                binding.seekBar.progress = musicService!!.mediaPlayer!!.currentPosition
+                binding.seekBar.max = musicService!!.mediaPlayer!!.duration
+                if(isPlaying) binding.playPauseBtn.setIconResource(R.drawable.pause_song_icon)
+                else binding.playPauseBtn.setIconResource(R.drawable.play_icon)
+
+            }
             "AlbumAdapter" ->{
+                // start the service
+                val intent = Intent(this,MusicService::class.java)
+                bindService(intent,this, BIND_AUTO_CREATE)
+                startService(intent)
+
                 musicListPA = ArrayList()
                 musicListPA.addAll(LibraryFragment.MusicListLibrary)
                 setLayout()

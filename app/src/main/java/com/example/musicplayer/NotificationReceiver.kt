@@ -20,6 +20,7 @@ class NotificationReceiver: BroadcastReceiver() {
         PlayerActivity.musicService!!.mediaPlayer!!.start()
         PlayerActivity.musicService!!.showNotification(R.drawable.pause_song_icon)
         PlayerActivity.binding.playPauseBtn.setIconResource(R.drawable.pause_song_icon)
+        NowPlaying.binding.playPauseBtnNowPlaying.setIconResource(R.drawable.pause_song_icon)
     }
 
     private fun pauseMusic(){
@@ -27,6 +28,7 @@ class NotificationReceiver: BroadcastReceiver() {
         PlayerActivity.musicService!!.mediaPlayer!!.pause()
         PlayerActivity.musicService!!.showNotification(R.drawable.play_icon)
         PlayerActivity.binding.playPauseBtn.setIconResource(R.drawable.play_icon)
+        NowPlaying.binding.playPauseBtnNowPlaying.setIconResource(R.drawable.play_icon)
     }
 
     private fun prevNextSong(increment: Boolean, context: Context){
@@ -37,6 +39,13 @@ class NotificationReceiver: BroadcastReceiver() {
             .apply(RequestOptions().placeholder(R.drawable.music_player_icon_splash_screen).centerCrop())
             .into(PlayerActivity.binding.SongImageInPlayer)
         PlayerActivity.binding.SongTitleInPlayer.text = PlayerActivity.musicListPA[PlayerActivity.songPosition].title
+
+        // connected to the now playing fragment
+        Glide.with(context)
+            .load(PlayerActivity.musicListPA[PlayerActivity.songPosition].artUri)
+            .apply(RequestOptions().placeholder(R.drawable.music_player_icon_splash_screen).centerCrop())
+            .into(NowPlaying.binding.nowPlayingImg)
+        NowPlaying.binding.songNameNowPlaying.text = PlayerActivity.musicListPA[PlayerActivity.songPosition].title
         playMusic()
     }
 

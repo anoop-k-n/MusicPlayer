@@ -1,19 +1,23 @@
 package com.example.musicplayer
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.musicplayer.databinding.AlbumViewBinding
 import com.google.android.material.imageview.ShapeableImageView
 
 
 class AlbumAdapter(private val context: Context, private val musicList : ArrayList<Music>) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
 
     private lateinit var mListener: onItemClickListener
+    lateinit var binding: AlbumViewBinding
     interface onItemClickListener{
         fun onItemCLick(position: Int)
     }
@@ -51,12 +55,24 @@ class AlbumAdapter(private val context: Context, private val musicList : ArrayLi
                 .apply(RequestOptions().placeholder(R.drawable.music_player_icon_splash_screen).centerCrop())
                 .into(holder.image)
         holder.songTitle.text = musicList[position].title
-
-
+        holder.itemView.setOnClickListener{
+            when{
+                // if same song is clicked
+                musicList[position].id == PlayerActivity.nowPlayingID ->
+                    sendIntent("NowPlaying",PlayerActivity.songPosition)
+            }
+        }
     }
 
     override fun getItemCount(): Int {
         return musicList.size
+    }
+
+    private fun sendIntent(ref: String,pos: Int){
+        val intent = Intent(context,PlayerActivity::class.java)
+        intent.putExtra("index",pos)
+        intent.putExtra("ref",ref)
+        ContextCompat.startActivity(context,intent,null)
     }
 
 }

@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".NowPlaying">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    tools:context=".NowPlaying"
+    android:background="@color/cool_blue">
 
-    <!-- TODO: Update blank fragment layout -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/nowPlayingImg"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="5dp"
+        app:shapeAppearanceOverlay="@style/curved"
+        android:src="@drawable/music_player_icon_splash_screen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/playPauseBtnNowPlaying"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/play_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:iconSize="40dp"
+        app:iconTint="@color/white"
+        app:backgroundTint="@color/cool_blue"
+        android:layout_marginRight="5dp"
+        />
+
     <TextView
+        android:id="@+id/songNameNowPlaying"
+        android:text="Song Name"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-</FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
