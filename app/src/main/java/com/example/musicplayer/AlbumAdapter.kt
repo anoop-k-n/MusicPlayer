@@ -14,7 +14,7 @@ import com.example.musicplayer.databinding.AlbumViewBinding
 import com.google.android.material.imageview.ShapeableImageView
 
 
-class AlbumAdapter(private val context: Context, private val musicList : ArrayList<Music>) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
+class AlbumAdapter(private val context: Context, private val musicList : ArrayList<Music>, private var playlistDetails: Boolean = false) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
 
     private lateinit var mListener: onItemClickListener
     lateinit var binding: AlbumViewBinding

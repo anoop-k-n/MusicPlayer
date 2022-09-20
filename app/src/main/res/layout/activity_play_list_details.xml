@@ -53,6 +53,7 @@
         android:layout_marginBottom="70dp"
         android:layout_marginEnd="10dp"
         app:icon="@drawable/shuffle_icon"
-        app:backgroundTint="@color/purple_200"/>
+        app:backgroundTint="@color/purple_200"
+        android:visibility="invisible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
