@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.musicplayer.databinding.ActivityMainBinding
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import kotlin.system.exitProcess
 
 
@@ -35,8 +37,16 @@ class MainActivity : AppCompatActivity() {
         }
         if(requestRuntimePermission()) {
             initializeLayout()
+            // for retrieving favorites data using shared preferences
+            FavouritesFragment.favoriteSongs = ArrayList()
+            val editor = getSharedPreferences("Favorites", MODE_PRIVATE)
+            val jsonString = editor.getString("FavoriteSongs",null)
+            val typeToken = object: TypeToken<ArrayList<Music>>(){}.type
+            if(jsonString != null) {
+                val data: ArrayList<Music> = GsonBuilder().create().fromJson(jsonString,typeToken)
+                FavouritesFragment.favoriteSongs.addAll(data)
+            }
         }
-
     }
 
     private fun initializeLayout(){
@@ -118,11 +128,22 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         if(PlayerActivity.musicService != null){
             // user wants to close the app
+            onResume()
             PlayerActivity.musicService!!.stopForeground(Service.STOP_FOREGROUND_REMOVE)
             PlayerActivity.musicService!!.mediaPlayer!!.release()
             PlayerActivity.musicService = null
             exitProcess(1)
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        // for storing favorites data using shared preferences
+        val editor = getSharedPreferences("Favorites", MODE_PRIVATE).edit()
+        val jsonString = GsonBuilder().create().toJson(FavouritesFragment.favoriteSongs)
+        editor.putString("FavoriteSongs",jsonString)
+        editor.apply()
+    }
+
 
 }

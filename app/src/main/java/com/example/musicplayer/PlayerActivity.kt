@@ -112,6 +112,15 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
     private fun initializeLayout(){
         songPosition = intent.getIntExtra("index",0)
         when(intent.getStringExtra("class")){
+
+            "FavoriteAdapter" ->{
+                val intent = Intent(this,MusicService::class.java)
+                bindService(intent,this, BIND_AUTO_CREATE)
+                startService(intent)
+                musicListPA = ArrayList()
+                musicListPA.addAll(FavouritesFragment.favoriteSongs)
+                setLayout()
+            }
             "NowPlaying" ->{
                 setLayout()
                 binding.progressTime.text = formatDuration(musicService!!.mediaPlayer!!.currentPosition.toLong())

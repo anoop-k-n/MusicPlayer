@@ -40,7 +40,6 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
                 intent.putExtra("album", MusicListLibrary[position].album)
                 intent.putExtra("class","AlbumAdapter")
                 startActivity(intent)
-
             }
 
         })
