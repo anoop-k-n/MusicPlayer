@@ -1,4 +1,5 @@
-<img src="https://github.com/anoop-k-n/MusicPlayer/blob/dev/app/src/music%20player%20icon.png" alt="Logo of Music Player" width="150"/>
+
+  <img src="https://github.com/anoop-k-n/MusicPlayer/blob/dev/app/src/music%20player%20icon.png" alt="Logo of Music Player" width="150"/>
 
 # Music Player
 
@@ -29,7 +30,7 @@ A beautiful and open source music player for Android.
 * Uses Material Design Components(MDC) to provide a consistent user experience
 
 ## Releases
-The releases are listed in the 'releases' section. Please note that currently only pre-release builds are available.
+The releases are listed in the ['Releases'](https://github.com/anoop-k-n/MusicPlayer/releases) section. Please note that currently only pre-release builds are available.
 ## Bug reports
 
 Please use the issue tracker provided by GitHub to send bug reports or feature requests.
