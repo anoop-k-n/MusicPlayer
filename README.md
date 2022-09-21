@@ -19,6 +19,7 @@ A beautiful and open source music player for Android.
 
 <img src="https://user-images.githubusercontent.com/112901662/191468337-b25c7296-088c-42f2-97a7-ecbc5dbf625d.jpg" alt="Screenshot of Music Player Activity" width="220"/>
 </p>
+
 ## Features
 
 * Play all songs in the device
@@ -27,6 +28,8 @@ A beautiful and open source music player for Android.
 * Control the songs through the notification panel
 * Uses Material Design Components(MDC) to provide a consistent user experience
 
+## Releases
+The releases are listed in the 'releases' section. Please note that currently only pre-release builds are available.
 ## Bug reports
 
 Please use the issue tracker provided by GitHub to send bug reports or feature requests.
